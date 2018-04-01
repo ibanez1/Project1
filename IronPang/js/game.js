@@ -4,10 +4,8 @@ function Game (canvasId) {
   this.background = new Background(this);
   //this.player = new Player(this);
 
-
-
-
-
+ this.framesCounter = 0;
+  
 
 };
 
@@ -18,9 +16,10 @@ Game.prototype.start = function() {
       this.clear();
       this.draw();
       this.moveAll();
+      if (this.framesCounter++ > 89) this.framesCounter = 0;
 
     }.bind(this),
-    16
+    200
   );
 };
 
