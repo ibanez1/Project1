@@ -16,7 +16,7 @@ function Player(game) {
   this.img.frameIndex = 0;
   //this.bullet = [];
   
-  
+  this.setListeners();
   
 }
 
@@ -24,7 +24,7 @@ function Player(game) {
 Player.prototype.draw = function() {
   this.game.ctx.drawImage(
     //drawImage(image1, sx1, sy1, sWidth1, sHeight1, dx, dy, dWidth, dHeight);
-    this.img, //imagen
+    this.img, //image
     this.img.frameIndex * Math.floor(this.img.width / this.img.frames),
     0,
     Math.floor(this.img.width / this.img.frames),
@@ -43,6 +43,19 @@ Player.prototype.draw = function() {
 };
 
 
+Player.prototype.setListeners = function() {
+  document.onkeydown = function(event) {
+    if (event.keyCode === KEY_LEFT) {
+      this.x -= 10;
+    }
+
+    if (event.keyCode === KEY_RIGHT) {
+      this.x +=10;
+    }
+  }.bind(this);
+};
+
+
 Player.prototype.animateImg = function() {
   if (this.img.frameIndex >= 11) {
     this.img.frameIndex = 1;
@@ -50,3 +63,11 @@ Player.prototype.animateImg = function() {
     this.img.frameIndex++;
   }
 };
+
+
+Player.prototype.move =function(){
+
+};
+
+var KEY_LEFT = 37;
+var KEY_RIGHT = 39;
