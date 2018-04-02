@@ -2,16 +2,14 @@ function Player(game) {
   this.game = game;
 
   this.x = this.game.canvas.width * 0.5;
-  this.y0 = 500;
   this.y = 560;
   this.w = 85;
   this.h = 145;
 
-  this.vy = 0;
-  this.g = 0.4;
+  
 
   this.img = new Image();
-  this.img.src = "img/metal-slug copia.png";
+  this.img.src = "img/metal-slug-player.png";
   this.img.frames = 12;
   this.img.frameIndex = 0;
   //this.bullet = [];
@@ -57,8 +55,8 @@ Player.prototype.setListeners = function() {
 
 
 Player.prototype.animateImg = function() {
-  if (this.img.frameIndex >= 11) {
-    this.img.frameIndex = 1;
+  if (this.img.frameIndex >= 12) {
+    this.img.frameIndex = 0;
   } else {
     this.img.frameIndex++;
   }

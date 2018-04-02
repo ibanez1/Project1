@@ -1,9 +1,10 @@
 function Game (canvasId) {
   this.canvas = document.getElementById(canvasId);
   this.ctx = this.canvas.getContext("2d");
-  this.background = new Background(this);
+  
   //this.audio = new Audio (this);
   this.player = new Player(this);
+  this.ball = new Ball(this);
 
  this.framesCounter = 0;
   
@@ -17,10 +18,9 @@ Game.prototype.start = function() {
       this.clear();
       this.draw();
       this.moveAll();
-      if (this.framesCounter++ > 89) this.framesCounter = 0;
 
     }.bind(this),
-    200
+    16
   );
 };
 
@@ -30,11 +30,13 @@ Game.prototype.clear = function() {
 
 
 Game.prototype.draw = function() {
-  this.background.draw();
+  
   this.player.draw();
+  this.ball.draw();
 
 };
 
 Game.prototype.moveAll = function() {
-  //this.player.move();
+  this.ball.moveAlone();
+  
 };

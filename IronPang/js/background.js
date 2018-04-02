@@ -1,4 +1,4 @@
-function Background(game) {
+/*function Background(game) {
   this.game = game;
 
   this.img = new Image();
@@ -31,7 +31,7 @@ Background.prototype.draw = function() {
   
 
 }
-
+*/
 
 
 
