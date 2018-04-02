@@ -10,9 +10,14 @@ function Player(game) {
   this.img.src = "img/metal-slug-player.png";
   this.img.frames = 12;
   this.img.frameIndex = 0;
+
+  this.speed = 10;
   //this.bullet = [];
 
   this.setListeners();
+
+
+  this.bullet = [];
 }
 
 Player.prototype.draw = function() {
@@ -26,7 +31,9 @@ Player.prototype.draw = function() {
     this.x,
     this.y,
     this.w,
-    this.h
+    this.h,
+
+    
   );
 };
 
@@ -39,18 +46,18 @@ Player.prototype.setListeners = function() {
       } else this.img.frameIndex = 0;       
 
       if (event.keyCode === KEY_LEFT) {
-        this.x -= 10;
+        this.x -= this.speed;
       }
       if (event.keyCode === KEY_RIGHT) {
-        this.x += 10;
+        this.x += this.speed;
       
       }
   }.bind(this);
 };
 
-
-
-Player.prototype.move = function() {};
+Player.prototype.shoot = function() {
+  this.bullet.push(new Bullet(this.game));
+};
 
 var KEY_LEFT = 37;
 var KEY_RIGHT = 39;
