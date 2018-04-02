@@ -2,7 +2,8 @@ function Game (canvasId) {
   this.canvas = document.getElementById(canvasId);
   this.ctx = this.canvas.getContext("2d");
   this.background = new Background(this);
-  //this.player = new Player(this);
+  //this.audio = new Audio (this);
+  this.player = new Player(this);
 
  this.framesCounter = 0;
   
@@ -30,7 +31,7 @@ Game.prototype.clear = function() {
 
 Game.prototype.draw = function() {
   this.background.draw();
-  //this.player.draw();
+  this.player.draw();
 
 };
 
