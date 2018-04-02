@@ -12,12 +12,11 @@ function Player(game) {
   this.img.frameIndex = 0;
 
   this.speed = 10;
-  //this.bullet = [];
 
+  this.bullets = [];
+  
   this.setListeners();
 
-
-  this.bullet = [];
 }
 
 Player.prototype.draw = function() {
@@ -50,14 +49,18 @@ Player.prototype.setListeners = function() {
       }
       if (event.keyCode === KEY_RIGHT) {
         this.x += this.speed;
-      
+      }  
+      if(event.keyCode === SPACE){
+        this.shoot();    
       }
   }.bind(this);
 };
 
 Player.prototype.shoot = function() {
-  this.bullet.push(new Bullet(this.game));
+  this.bullets.push(new Bullet(this.game));
 };
+
 
 var KEY_LEFT = 37;
 var KEY_RIGHT = 39;
+var SPACE = 32;
