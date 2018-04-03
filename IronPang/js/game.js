@@ -59,13 +59,25 @@ Game.prototype.checkCollision = function (balls, player) {
     }
 }
 
-Game.prototype.checkBulletCollision = function (player, ball) {
+Game.prototype.checkBulletCollision = function (player, balls) {
 for (var i = 0; i < player.bullets.length; i++) {
-  for (var j = 0; j < ball.length; j++){
+  for (var j = 0; j < balls.length; j++){
   
-    if (this.player.bullets[i].x < ball[j].x + ball[j].r && this.player.bullets[i].x + this.player.bullets[i].w > ball[j].x &&
-      this.player.bullets[i].y < ball[j].y + ball[j].r && this.player.bullets[i].y + this.player.bullets[i].h > ball[j].y){
+    if (this.player.bullets[i].x < balls[j].x + balls[j].r && this.player.bullets[i].x + this.player.bullets[i].w > balls[j].x &&
+      this.player.bullets[i].y < balls[j].y + balls[j].r && this.player.bullets[i].y + this.player.bullets[i].h > balls[j].y){
         console.log("Bullet Collision")
+
+
+        var smallBall = new Ball(this);
+        smallBall.r = 20;
+        smallBall.x = balls[j].x + 10;
+        smallBall.y = balls[j].y -30;
+
+
+        balls.splice([j],1);
+
+        balls.push(smallBall);
+
       }
     } 
  }

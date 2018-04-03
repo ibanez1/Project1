@@ -2,13 +2,13 @@ function Bullet(game) {
   this.game = game;
 
   this.x = this.game.player.x;
-  this.y = 350;
+  this.y = 500;
   
   this.vy = 20;
   this.img = new Image();
   this.img.src = "img/mine-bullet.png"; 
-  this.w = 50;
-  this.h = 20;
+  this.w = 70;
+  this.h = 90;
 
 }
 
