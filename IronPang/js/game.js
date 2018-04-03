@@ -4,7 +4,8 @@ function Game(canvasId) {
 
   this.audio = new Audio ("sounds/01.mp3");
   this.player = new Player(this);
-  this.ball = new Ball(this);
+  this.balls = [new Ball(this)];
+  
 
   this.framesCounter = 0;
 }
@@ -16,8 +17,8 @@ Game.prototype.start = function() {
       this.clear();
       this.draw();
       this.moveAll();
-      this.checkCollision(this.player, this.ball);
-      this.checkBulletCollision(this.player, this.ball)
+      this.checkCollision(this.balls, this.player);
+      //this.checkBulletCollision(this.player, this.ball)
       this.clearBullets();
     }.bind(this),
     16
@@ -28,29 +29,37 @@ Game.prototype.clear = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 };
 
+
 Game.prototype.draw = function() {
   this.player.draw();
-  this.ball.draw();
+  this.balls.forEach(function(e){
+    e.draw()
+  });
   this.player.bullets.forEach(function(e) {
     e.draw();
   });
 };
 
 Game.prototype.moveAll = function() {
-  this.ball.moveAlone();
+  this.balls.forEach(function(e) {
+    e.moveAlone()
+  });
   this.player.bullets.forEach(function(e) {
     e.move();
   });
 };
 
-Game.prototype.checkCollision = function (player,obstacle) {
-  if (player.x < obstacle.x + obstacle.r && player.x + player.w > obstacle.x &&
-    player.y < obstacle.y + obstacle.r && player.y + player.h > obstacle.y) {
-    console.log("COLLISION")
- }
+Game.prototype.checkCollision = function (balls, player) {
+
+ for (var i = 0; i < balls.length; i++) {
+     if (player.x < balls[i].x + balls[i].r && player.x + player.w > balls[i].x &&
+      player.y < balls[i].y + balls[i].r && player.y + player.h > balls[i].y){
+        console.log("COLLISION")
+      }
+    }
 }
 
-Game.prototype.checkBulletCollision = function (player, ball) {
+/*Game.prototype.checkBulletCollision = function (player, ball) {
 for (var i = 0; i < this.player.bullets.length; i++) {
   console.log(this.player.bullets[i])
     if (this.player.bullets[i].x < ball.x + ball.r && this.player.bullets[i].x + this.player.bullets[i].w > ball.x &&
@@ -58,7 +67,7 @@ for (var i = 0; i < this.player.bullets.length; i++) {
         console.log("Bullet Collision")
       }
     } 
-}
+}*/
 
 
 Game.prototype.clearBullets = function() {

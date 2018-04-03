@@ -6,6 +6,7 @@ function Ball(game) {
   this.vx = 2;
   this.r = 40;
   this.gravity = 0.25;
+  
 }
 
 Ball.prototype.draw = function() {
