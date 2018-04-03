@@ -18,7 +18,7 @@ Game.prototype.start = function() {
       this.draw();
       this.moveAll();
       this.checkCollision(this.balls, this.player);
-      //this.checkBulletCollision(this.player, this.ball)
+      this.checkBulletCollision(this.player, this.balls)
       this.clearBullets();
     }.bind(this),
     16
@@ -59,15 +59,17 @@ Game.prototype.checkCollision = function (balls, player) {
     }
 }
 
-/*Game.prototype.checkBulletCollision = function (player, ball) {
-for (var i = 0; i < this.player.bullets.length; i++) {
-  console.log(this.player.bullets[i])
-    if (this.player.bullets[i].x < ball.x + ball.r && this.player.bullets[i].x + this.player.bullets[i].w > ball.x &&
-      this.player.bullets[i].y < ball.y + ball.r && this.player.bullets[i].y + this.player.bullets[i].h > ball.y){
+Game.prototype.checkBulletCollision = function (player, ball) {
+for (var i = 0; i < player.bullets.length; i++) {
+  for (var j = 0; j < ball.length; j++){
+  
+    if (this.player.bullets[i].x < ball[j].x + ball[j].r && this.player.bullets[i].x + this.player.bullets[i].w > ball[j].x &&
+      this.player.bullets[i].y < ball[j].y + ball[j].r && this.player.bullets[i].y + this.player.bullets[i].h > ball[j].y){
         console.log("Bullet Collision")
       }
     } 
-}*/
+ }
+}
 
 
 Game.prototype.clearBullets = function() {

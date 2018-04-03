@@ -6,7 +6,9 @@ function Ball(game) {
   this.vx = 2;
   this.r = 40;
   this.gravity = 0.25;
-  
+  //this.img = new Image();
+  //this.img.src = "img/demon.png";
+
 }
 
 Ball.prototype.draw = function() {
@@ -18,6 +20,17 @@ Ball.prototype.draw = function() {
   this.game.ctx.stroke();
   this.game.ctx.closePath();
 };
+
+/*Ball.prototype.draw = function() {
+  this.game.ctx.drawImage(
+    this.img,
+    this.x,
+    this.y,
+    
+  )
+  
+}*/
+
 
 Ball.prototype.moveAlone = function() {
   

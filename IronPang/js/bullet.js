@@ -20,7 +20,7 @@ Bullet.prototype.draw = function() {
     this.x,
     this.y,
     this.w,
-    this.y
+    this.h
   )
 };
 
