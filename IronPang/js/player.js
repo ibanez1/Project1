@@ -12,12 +12,16 @@ function Player(game) {
   this.img.frameIndex = 0;
 
   this.speed = 10;
+  this.moveRight = false;
+  this.moveLeft = false;
 
   this.bullets = [];
-  
-  this.setListeners();
 
+  this.setListeners();
 }
+
+
+
 
 Player.prototype.draw = function() {
   this.game.ctx.drawImage(
@@ -30,37 +34,88 @@ Player.prototype.draw = function() {
     this.x,
     this.y,
     this.w,
-    this.h,
-
-    
+    this.h
   );
 };
 
-
-
-Player.prototype.setListeners = function() {
-  document.onkeydown = function(event) {
-      if (this.img.frameIndex < 11) {
-        this.img.frameIndex++;
-      } else this.img.frameIndex = 0;       
-
-      if (event.keyCode === KEY_LEFT) {
-        this.x -= this.speed;
-      }
-      if (event.keyCode === KEY_RIGHT) {
-        this.x += this.speed;
-      }  
-      if(event.keyCode === SPACE){
-        this.shoot();    
-      }
-  }.bind(this);
-};
 
 Player.prototype.shoot = function() {
   this.bullets.push(new Bullet(this.game));
 };
 
 
-var KEY_LEFT = 37;
-var KEY_RIGHT = 39;
+/*Player.prototype.setListeners = function() {
+  document.onkeydown = function(event) {
+    if (this.img.frameIndex < 11) {
+      this.img.frameIndex++;
+    } else this.img.frameIndex = 0;
+
+    if (event.keyCode === LEFT_KEY) {
+      this.x -= this.speed;
+    }
+    if (event.keyCode === RIGHT_KEY) {
+      this.x += this.speed;
+    }
+    if (event.keyCode === SPACE) {
+      this.shoot();
+    }
+  }.bind(this);
+};*/
+
+
+
+Player.prototype.setListeners = function() {
+document.onkeydown = function(event) {
+
+  
+
+    
+  if (event.keyCode === RIGHT_KEY ) {
+    this.moveRight = true;
+    if (this.img.frameIndex < 11) {
+      this.img.frameIndex++;
+    } else this.img.frameIndex = 6;
+    
+  }
+
+  if(event.keyCode === LEFT_KEY ){
+    this.moveLeft = true;
+    if (this.img.frameIndex > 0) {
+      this.img.frameIndex--;
+    } else this.img.frameIndex = 5;
+  }
+
+  if(event.keyCode === SPACE ){
+    this.shoot();
+  }
+  
+}.bind(this);
+
+document.onkeyup = function (event){
+  if(event.keyCode === RIGHT_KEY){
+    this.moveRight = false;
+  }
+  if(event.keyCode === LEFT_KEY){
+    this.moveLeft = false;
+  }
+
+}.bind(this);
+}
+
+
+Player.prototype.move = function() {
+
+if (this.moveRight == true) {
+this.x += this.speed;
+}
+if (this.moveLeft == true) {
+this.x -= this.speed;
+}
+
+};
+
+
+
+var LEFT_KEY = 37;
+var RIGHT_KEY = 39;
 var SPACE = 32;

@@ -1,14 +1,13 @@
-function Ball(game) {
+function Ball(game,r,x,y) {
   this.game = game;
-  this.x = this.game.canvas.width * 0.5;
-  this.y = 40;
+  this.x = x;
+  this.y = y;
   this.vy = 0;
   this.vx = 2;
-  this.r = 40;
+  this.r = r;
   this.gravity = 0.25;
   //this.img = new Image();
   //this.img.src = "img/demon.png";
-
 }
 
 Ball.prototype.draw = function() {
@@ -31,11 +30,9 @@ Ball.prototype.draw = function() {
   
 }*/
 
-
 Ball.prototype.moveAlone = function() {
-  
-    this.vy += this.gravity;
-    this.y += this.vy;
+  this.vy += this.gravity;
+  this.y += this.vy;
 
   if (this.y + this.r > this.game.canvas.height || this.y - this.r < 0) {
     this.vy *= -1;
@@ -45,5 +42,5 @@ Ball.prototype.moveAlone = function() {
 
   if (this.x + this.r > this.game.canvas.width || this.x - this.r < 0) {
     this.vx *= -1;
-  };
+  }
 };
