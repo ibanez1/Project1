@@ -4,7 +4,7 @@ function Game(canvasId) {
 
   this.audio = new Audio("sounds/01.mp3");
   this.player = new Player(this);
-  this.balls = [new Ball(this,50,this.canvas.width*0.5,60)];
+  this.balls = [new Ball(this,55,500,70), new Ball(this,55,1000,70)];
  
   this.framesCounter = 0;
 }
@@ -54,7 +54,7 @@ Game.prototype.checkCollision = function() {
   }
 
   for (var i=0; i<this.balls.length; i++) {
-    this.balls[i].collidesWithBullets(this.balls[i], this.player.bullets)
+    this.balls[i].collidesWithBullets(this.balls[i], this.player.bullets,i)
 
   } 
 }

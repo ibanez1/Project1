@@ -45,7 +45,7 @@ Ball.prototype.collidesWithPlayer = function(ball, player){
 
     }  
 
-Ball.prototype.collidesWithBullets = function(ball, bullets){
+Ball.prototype.collidesWithBullets = function(ball, bullets, p){
     
   for (var i = 0; i < bullets.length; i++) {
     if (
@@ -61,14 +61,15 @@ Ball.prototype.collidesWithBullets = function(ball, bullets){
           y : ball.y,
           r : ball.r
         }
-        this.game.balls.splice([i], 1);
+        this.game.balls.splice([p], 1);
         console.log(this.game.balls)
         
-        
-        var smallBall1 = new Ball(this.game,20,oldBall.x +41, oldBall.y);
-        var smallBall2 = new Ball(this.game,20,oldBall.x -41, oldBall.y);
+        if(ball.r > 26){
+        var smallBall1 = new Ball(this.game,25,oldBall.x +41, oldBall.y);
+        var smallBall2 = new Ball(this.game,25,oldBall.x -41, oldBall.y);
         this.game.balls.push(smallBall1, smallBall2);
         return true;
+        }
       }
     }   
   };
@@ -90,7 +91,6 @@ Ball.prototype.moveAlone = function() {
     }
   }
 
-
   else if (this.y > 500) {
    
     this.y += this.vy;
@@ -105,11 +105,4 @@ Ball.prototype.moveAlone = function() {
     }
       
     }  
-  
-
-   
-
-
-
-  
 };
