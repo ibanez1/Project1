@@ -5,7 +5,7 @@ function Ball(game,r,x,y) {
   this.vy = 0;
   this.vx = 2;
   this.r = r;
-  this.gravity = 0.25;
+  this.gravity = 0.35;
   //this.img = new Image();
   //this.img.src = "img/demon.png";
 }
