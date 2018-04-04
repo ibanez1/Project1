@@ -11,9 +11,10 @@ function Ball(game,r,x,y) {
 }
 
 Ball.prototype.draw = function() {
-  this.game.ctx.beginPath();
+
   this.game.ctx.fillStyle = "red";
   this.game.ctx.strokeStyle = "black";
+  this.game.ctx.beginPath();
   this.game.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
   this.game.ctx.fill();
   this.game.ctx.stroke();
@@ -29,6 +30,50 @@ Ball.prototype.draw = function() {
   )
   
 }*/
+
+Ball.prototype.collidesWithPlayer = function(ball, player){
+  
+      if (
+        player.x < ball.x + ball.r &&
+        player.x + player.w > ball.x &&
+        player.y < ball.y + ball.r &&
+        player.y + player.h > ball.y
+      ) {
+        
+        console.log("Collision. GAME OVER!");
+      }
+
+    }  
+
+Ball.prototype.collidesWithBullets = function(ball, bullets){
+    
+  for (var i = 0; i < bullets.length; i++) {
+    if (
+      bullets[i].x < ball.x + ball.r &&
+      bullets[i].x + bullets[i].w > ball.x &&
+      bullets[i].y < ball.y + ball.r &&
+      bullets[i].y + bullets[i].h > ball.y
+    ) {
+        bullets.splice([i], 1);
+        console.log("Bullet Collision");
+        var oldBall = {
+          x : ball.x,
+          y : ball.y,
+          r : ball.r
+        }
+        this.game.balls.splice([i], 1);
+        console.log(this.game.balls)
+        
+        
+        var smallBall1 = new Ball(this.game,20,oldBall.x +41, oldBall.y);
+        var smallBall2 = new Ball(this.game,20,oldBall.x -41, oldBall.y);
+        this.game.balls.push(smallBall1, smallBall2);
+        return true;
+      }
+    }   
+  };
+
+       
 
 Ball.prototype.moveAlone = function() {
   this.vy += this.gravity;
