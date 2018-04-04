@@ -76,16 +76,40 @@ Ball.prototype.collidesWithBullets = function(ball, bullets){
        
 
 Ball.prototype.moveAlone = function() {
-  this.vy += this.gravity;
-  this.y += this.vy;
 
-  if (this.y + this.r > this.game.canvas.height || this.y - this.r < 0) {
-    this.vy *= -1;
-  }
-
-  this.x += this.vx;
-
-  if (this.x + this.r > this.game.canvas.width || this.x - this.r < 0) {
+  if (this.y <= 500) {
+    this.vy += this.gravity;
+    this.y += this.vy;
+    this.x += this.vx;
+    
+    if (this.y + this.r > this.game.canvas.height || this.y - this.r < 0) {
+      this.vy *= -1;  
+    }
+    if (this.x + this.r > this.game.canvas.width || this.x - this.r < 0) {
     this.vx *= -1;
+    }
   }
+
+
+  else if (this.y > 500) {
+   
+    this.y += this.vy;
+    this.x += this.vx;
+
+    if(this.y + this.r + this.vy > this.game.canvas.height) {
+      this.vy *= -1;
+    }
+  
+    if (this.x + this.r > this.game.canvas.width || this.x - this.r < 0) {
+    this.vx *= -1;
+    }
+      
+    }  
+  
+
+   
+
+
+
+  
 };

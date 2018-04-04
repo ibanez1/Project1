@@ -4,7 +4,7 @@ function Game(canvasId) {
 
   this.audio = new Audio("sounds/01.mp3");
   this.player = new Player(this);
-  this.balls = [new Ball(this,40,this.canvas.width*0.5,40)];
+  this.balls = [new Ball(this,50,this.canvas.width*0.5,60)];
  
   this.framesCounter = 0;
 }
