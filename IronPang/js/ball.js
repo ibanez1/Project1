@@ -13,26 +13,26 @@ function Ball(game, r, x, y) {
 //-----------BALL DRAW---------------
 
 Ball.prototype.draw = function() {
-
-  this.game.ctx.fillStyle = "red";
-  this.game.ctx.strokeStyle = "black";
+  this.game.ctx.drawImage(
+    this.img,
+    this.x-56,
+    this.y-50,
+    this.r*2,
+    this.r*2,
+  )
   this.game.ctx.beginPath();
   this.game.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-
-  this.game.ctx.fill();
-  this.game.ctx.stroke();
   this.game.ctx.closePath();
- };
-
+ }
 
 //-----------BALL COLLIDESWITHPLAYER---------------
 
 Ball.prototype.collidesWithPlayer = function(ball, player) {
   if (
-    player.x < ball.x + ball.r &&
-    player.x + player.w > ball.x &&
-    player.y < ball.y + ball.r &&
-    player.y + player.h > ball.y
+    player.x < ball.x - 40 + ball.r &&
+    player.x + player.w > ball.x - 40 &&
+    player.y < ball.y - 50 + ball.r &&
+    player.y  + player.h > ball.y - 50
   ) {
     this.game.gameOver();
   }
@@ -111,7 +111,7 @@ Ball.prototype.moveAlone = function() {
 //------------NEW BALL---------------
 
 Ball.prototype.newBall = function() {
-  if (this.game.score.points % 50 === 0) {
+  if (this.game.score.points % 50 === 0 && this.game.score.points!= 50 && this.game.score.points!=150 && this.game.score.points!=250 && this.game.score.points!=850 && this.game.score.points!=950) {
     this.game.balls.push(new Ball(this.game, 55, 750, 70));
   }
 };
