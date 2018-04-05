@@ -8,8 +8,8 @@ function Score(game){
 //-------------SCORE DRAW----------------
 
 Score.prototype.draw = function(){
-  this.game.ctx.font = "50px sans serif";
+  this.game.ctx.font = "70px 'Press Start 2P'";
   this.game.ctx.fillStyle = "black";
-  this.game.ctx.fillText('Score:'+Math.floor(this.points), 500, 50);
+  this.game.ctx.fillText('Score:'+Math.floor(this.points), this.game.canvas.width * 0.25, this.game.canvas.height * 0.05);
   this.game.ctx.textBaseline = "top";
 };
