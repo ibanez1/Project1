@@ -20,7 +20,7 @@ function Player(game) {
   this.setListeners();
 }
 
-
+//-------------PLAYER DRAW----------------
 
 
 Player.prototype.draw = function() {
@@ -39,29 +39,16 @@ Player.prototype.draw = function() {
 };
 
 
+//-------------PLAYER SHOOT----------------
+
+
 Player.prototype.shoot = function() {
   this.bullets.push(new Bullet(this.game));
 };
 
 
-/*Player.prototype.setListeners = function() {
-  document.onkeydown = function(event) {
-    if (this.img.frameIndex < 11) {
-      this.img.frameIndex++;
-    } else this.img.frameIndex = 0;
 
-    if (event.keyCode === LEFT_KEY) {
-      this.x -= this.speed;
-    }
-    if (event.keyCode === RIGHT_KEY) {
-      this.x += this.speed;
-    }
-    if (event.keyCode === SPACE) {
-      this.shoot();
-    }
-  }.bind(this);
-};*/
-
+//-------------PLAYER SETLISTENERS----------------
 
 
 Player.prototype.setListeners = function() {
@@ -102,6 +89,8 @@ document.onkeyup = function (event){
 }.bind(this);
 }
 
+
+//-------------PLAYER MOVE----------------
 
 Player.prototype.move = function() {
 

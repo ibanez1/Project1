@@ -10,6 +10,9 @@ function Ball(game,r,x,y) {
   //this.img.src = "img/demon.png";
 }
 
+//-----------BALL DRAW---------------
+
+
 Ball.prototype.draw = function() {
 
   this.game.ctx.fillStyle = "red";
@@ -31,6 +34,11 @@ Ball.prototype.draw = function() {
   
 }*/
 
+
+//-----------BALL COLLIDESWITHPLAYER---------------
+
+
+
 Ball.prototype.collidesWithPlayer = function(ball, player){
   
       if (
@@ -45,6 +53,10 @@ Ball.prototype.collidesWithPlayer = function(ball, player){
 
     }  
 
+
+//-----------BALL COLLIDESWITHBULLETS---------------
+
+
 Ball.prototype.collidesWithBullets = function(ball, bullets, p){
     
   for (var i = 0; i < bullets.length; i++) {
@@ -56,17 +68,19 @@ Ball.prototype.collidesWithBullets = function(ball, bullets, p){
     ) {
         bullets.splice([i], 1);
         console.log("Bullet Collision");
+        this.game.score.points += 25;
         var oldBall = {
           x : ball.x,
           y : ball.y,
           r : ball.r
         }
         this.game.balls.splice([p], 1);
+        this.newBall();
         console.log(this.game.balls)
         
         if(ball.r > 26){
-        var smallBall1 = new Ball(this.game,25,oldBall.x +41, oldBall.y);
-        var smallBall2 = new Ball(this.game,25,oldBall.x -41, oldBall.y);
+        var smallBall1 = new Ball(this.game,25,oldBall.x +60, oldBall.y - 40);
+        var smallBall2 = new Ball(this.game,25,oldBall.x -60, oldBall.y - 40);
         this.game.balls.push(smallBall1, smallBall2);
         return true;
         }
@@ -74,6 +88,8 @@ Ball.prototype.collidesWithBullets = function(ball, bullets, p){
     }   
   };
 
+
+//-----------BALL MOVEALONE---------------
        
 
 Ball.prototype.moveAlone = function() {
@@ -106,3 +122,12 @@ Ball.prototype.moveAlone = function() {
       
     }  
 };
+
+//------------NEW BALL---------------
+
+Ball.prototype.newBall = function() {
+
+  if (this.game.score.points % 75 === 0) {
+    this.game.balls.push(new Ball(this.game,55,750,70))
+  }
+}

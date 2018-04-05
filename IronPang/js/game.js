@@ -2,12 +2,16 @@ function Game(canvasId) {
   this.canvas = document.getElementById(canvasId);
   this.ctx = this.canvas.getContext("2d");
 
-  this.audio = new Audio("sounds/01.mp3");
+  this.audio = new Audio("sounds/_game-music.mp3");
   this.player = new Player(this);
   this.balls = [new Ball(this,55,500,70), new Ball(this,55,1000,70)];
- 
+  this.score = new Score(this);
+
   this.framesCounter = 0;
 }
+
+
+//-------------GAME START----------------
 
 Game.prototype.start = function() {
   this.audio.play();
@@ -23,19 +27,27 @@ Game.prototype.start = function() {
   );
 };
 
+//-------------GAME CLEAR----------------
+
 Game.prototype.clear = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 };
 
+//-------------GAME DRAW---------------
+
 Game.prototype.draw = function() {
   this.player.draw();
+  this.score.draw();
   this.balls.forEach(function(e) {
     e.draw();
   });
   this.player.bullets.forEach(function(e) {
     e.draw();
+
   });
 };
+
+//-------------GAME MOVE ALL----------------
 
 Game.prototype.moveAll = function() {
   this.balls.forEach(function(e) {
@@ -46,6 +58,8 @@ Game.prototype.moveAll = function() {
   });
   this.player.move();
 };
+
+//-------------GAME CHECKCOLLISION----------------
 
 Game.prototype.checkCollision = function() {
   
@@ -58,6 +72,8 @@ Game.prototype.checkCollision = function() {
 
   } 
 }
+
+//-------------GAME CLEAR BULLETS----------------
 
 Game.prototype.clearBullets = function() {
   this.player.bullets = this.player.bullets.filter(

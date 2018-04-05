@@ -1,7 +1,11 @@
 #canvas {
-  border-color: black;
-  border-style: dotted;
-  border-width: 2px; 
-  background-image: url("../img/background-azteca.gif")
+  border: 1px solid black;
+  background-image: url("../img/background-azteca.gif");
+
 }
 
+body {
+  background-image: url("../img/jungle2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat; 
+}
