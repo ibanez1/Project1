@@ -47,8 +47,7 @@ Ball.prototype.collidesWithPlayer = function(ball, player){
         player.y < ball.y + ball.r &&
         player.y + player.h > ball.y
       ) {
-        
-        console.log("Collision. GAME OVER!");
+        this.game.gameOver();
       }
 
     }  

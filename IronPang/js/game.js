@@ -83,3 +83,12 @@ Game.prototype.clearBullets = function() {
   );
 };
 
+
+Game.prototype.gameOver = function() {
+    this.ctx.font = "100px sans serif";
+    this.ctx.strokeStyle = "Red";
+    this.ctx.fillText('GAME OVER! Final Score: '+Math.floor(this.score.points), 150, 250);
+    this.ctx.textBaseline = "top";
+    clearInterval(this.intervalId);
+}
+
