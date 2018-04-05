@@ -4,12 +4,11 @@ function Game(canvasId) {
 
   this.audio = new Audio("sounds/_01.mp3");
   this.player = new Player(this);
-  this.balls = [new Ball(this,55,500,70), new Ball(this,55,1000,70)];
+  this.balls = [new Ball(this, 55, 500, 70), new Ball(this, 55, 1000, 70)];
   this.score = new Score(this);
 
   this.framesCounter = 0;
 }
-
 
 //-------------GAME START----------------
 
@@ -43,7 +42,6 @@ Game.prototype.draw = function() {
   });
   this.player.bullets.forEach(function(e) {
     e.draw();
-
   });
 };
 
@@ -62,16 +60,14 @@ Game.prototype.moveAll = function() {
 //-------------GAME CHECKCOLLISION----------------
 
 Game.prototype.checkCollision = function() {
-  
-  for (var i=0; i<this.balls.length; i++) {
-    this.balls[i].collidesWithPlayer(this.balls[i], this.player)
+  for (var i = 0; i < this.balls.length; i++) {
+    this.balls[i].collidesWithPlayer(this.balls[i], this.player);
   }
 
-  for (var i=0; i<this.balls.length; i++) {
-    this.balls[i].collidesWithBullets(this.balls[i], this.player.bullets,i)
-
-  } 
-}
+  for (var i = 0; i < this.balls.length; i++) {
+    this.balls[i].collidesWithBullets(this.balls[i], this.player.bullets, i);
+  }
+};
 
 //-------------GAME CLEAR BULLETS----------------
 
@@ -83,14 +79,12 @@ Game.prototype.clearBullets = function() {
   );
 };
 
-
 //--------------GAME OVER----------------------
 
 Game.prototype.gameOver = function() {
-    this.ctx.font = "115px 'Press Start 2P'";
-    this.ctx.fillStyle = "Black";
-    this.ctx.fillText("GAME OVER!", canvas.width * 0.15, canvas.height * 0.35);
-    this.ctx.textBaseline = "top";
-    clearInterval(this.intervalId);
-}
-
+  this.ctx.font = "115px 'Press Start 2P'";
+  this.ctx.fillStyle = "Black";
+  this.ctx.fillText("GAME OVER!", canvas.width * 0.15, canvas.height * 0.35);
+  this.ctx.textBaseline = "top";
+  clearInterval(this.intervalId);
+};
