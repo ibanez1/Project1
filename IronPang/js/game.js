@@ -84,10 +84,12 @@ Game.prototype.clearBullets = function() {
 };
 
 
+//--------------GAME OVER----------------------
+
 Game.prototype.gameOver = function() {
-    this.ctx.font = "100px sans serif";
-    this.ctx.strokeStyle = "Red";
-    this.ctx.fillText('GAME OVER! Final Score: '+Math.floor(this.score.points), 150, 250);
+    this.ctx.font = "115px 'Press Start 2P'";
+    this.ctx.fillStyle = "Black";
+    this.ctx.fillText("GAME OVER!", canvas.width * 0.15, canvas.height * 0.35);
     this.ctx.textBaseline = "top";
     clearInterval(this.intervalId);
 }

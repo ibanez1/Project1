@@ -4,9 +4,9 @@ window.onload = function() {
   var ctx = canvas.getContext("2d");
 
 
-    ctx.font = "100px sans serif";
-    ctx.fillStyle = "Black";
-    ctx.fillText("To Start Press 'P'", 150, 250);
+    ctx.font = "60px 'Press Start 2P'";
+    ctx.strokeStyle = "Black";
+    ctx.fillText("-START-(Press P)", canvas.width * 0.15, canvas.height * 0.55);
 
   document.onkeydown = function(event) {
 
