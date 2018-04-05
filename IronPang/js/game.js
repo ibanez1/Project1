@@ -2,7 +2,7 @@ function Game(canvasId) {
   this.canvas = document.getElementById(canvasId);
   this.ctx = this.canvas.getContext("2d");
 
-  this.audio = new Audio("sounds/_01.mp3");
+  this.audio = new Audio("sounds/game.mp3");
   this.player = new Player(this);
   this.balls = [new Ball(this, 55, 500, 70), new Ball(this, 55, 1000, 70)];
   this.score = new Score(this);
